@@ -46,7 +46,7 @@ plt.show()
 
 ## Output
 ```
-<img width="967" height="656" alt="Screenshot 2026-08-26 120940" src="https://github.com/user-attachments/assets/2a4f6bf5-c597-4e0c-9a6c-c6856c9c5123" />
+<img width="837" height="616" alt="image" src="https://github.com/user-attachments/assets/d8a6e42c-ebb0-42c9-a8de-aa0c3e07acf6" />
 
 ```
 
