@@ -24,23 +24,30 @@ To implement QR decomposition algorithm using the Gram-Schmidt method.
 ## Program:
 ### Gram-Schmidt Method
 ```
+import os
+os.environ["OPENBLAS_NUM_THREADS"]="1"
 import numpy as np
-import matplotlib.pyplot as plt
-X=np.array(eval(input()))
-Y=np.array(eval(input()))
-Xmean=np.mean(X)
-Ymean=np.mean(Y)
-num,den=0,0
-for i in range(len(X)):
-    num += (X[i]-Xmean)*(Y[i]-Ymean)
-    den += (X[i]-Xmean)**2
-slope = num/den
-c= Ymean-slope*Xmean
-print(slope,c)
-Y_pred= slope*X + c
-plt.scatter(X,Y)
-plt.plot(X,Y_pred,color="green")
-plt.show()
+def QR_Decomposition(A):
+    n,m=A.shape
+    Q=np.empty((n,m))
+    u=np.empty((n,m))
+    R=np.zeros((n,m))
+    u[:,0]=A[:,0]
+    Q[:,0]=u[:,0]/np.linalg.norm(u[:,0])
+    for i in range(1,n):
+        u[:,i]=A[:,i]
+        for j in range(n):
+            u[:,i]-=(A[:,i]@Q[:,j]*Q[:,j])
+        Q[:,i]=u[:,i]/np.linalg.norm(u[:,i])
+    for i in range(n):
+        for j in range(i,m):
+            R[i,j]=A[:,j]@Q[:,i]
+    print(f"The Q Matrix is\n {Q}")
+    print(f"The R Matrix is\n {R}")
+    
+    
+a=np.array(eval(input()))  
+QR_Decomposition(a)
 
 ```
 
